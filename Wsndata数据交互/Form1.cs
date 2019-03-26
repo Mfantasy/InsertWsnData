@@ -21,6 +21,7 @@ namespace Wsndata数据交互
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            new ProcessCsv().Work();
             Console.WriteLine(null + "123");
             DateTime dt = new DateTime(2015, 1, 1);
             string k15 = ConvertDateTimeInt(dt).ToString();
