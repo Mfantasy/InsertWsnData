@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertWsnData", "InsertWsnData\InsertWsnData.csproj", "{5803AAB1-02BF-4B22-ABB3-1C5384F48228}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "气象站数据补充", "气象站数据补充\气象站数据补充.csproj", "{341B6FCF-D45B-4DC5-848E-54888F1D6EDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wsndata数据交互", "Wsndata数据交互\Wsndata数据交互.csproj", "{77AE3C4E-009B-4D87-A699-BC788F8E0A0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{341B6FCF-D45B-4DC5-848E-54888F1D6EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{341B6FCF-D45B-4DC5-848E-54888F1D6EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{341B6FCF-D45B-4DC5-848E-54888F1D6EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AE3C4E-009B-4D87-A699-BC788F8E0A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AE3C4E-009B-4D87-A699-BC788F8E0A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AE3C4E-009B-4D87-A699-BC788F8E0A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AE3C4E-009B-4D87-A699-BC788F8E0A0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18D88A21-4498-4D87-ACE0-72F72B716C27}
 	EndGlobalSection
 EndGlobal
