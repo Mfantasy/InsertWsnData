@@ -41,7 +41,7 @@ namespace Wsndata数据交互
             Random r = new Random();
             DateTime ds = DateTime.MinValue;
             DateTime de = DateTime.MaxValue;
-
+            bool is2017 = fullName.Contains("2017");
             if (fullName.Contains("2017"))
             {
                 ds = new DateTime(2017, 1, 1);
@@ -67,29 +67,42 @@ namespace Wsndata数据交互
                 while (temp < de)
                 {
 					temp = temp.AddMinutes(5);
-					if (fullName.Contains("纵八路"))
-					{
-						/*2017  8月份8月3日7点到14点流量数据保留，其他流量数据为0
-								9月份9月19日流量数据保留，其他流量数据为0  */
-						DateTime d17080307 = new DateTime(2017, 8, 3, 7, 0, 0);
-						DateTime d17080314 = new DateTime(2017, 8, 3, 14, 0, 0);
-						DateTime d17091907 = new DateTime(2017, 8, 9, 19, 0, 0);
-						DateTime d17091907e = d17091907.AddDays(1);
-						if ((temp > d17080307 && temp < d17080314) || (temp > d17091907 && temp < d17091907e))
-						{
-							nv = (r.NextDouble() * (h - l) + l).ToString("F2");
-						}
-						else
-						{
-							nv = "0";
-						}
-					}
+                    if (is2017)
+                    {
+                        if (fullName.Contains("纵八路"))
+                        {
+                            /*2017  8月份8月3日7点到14点流量数据保留，其他流量数据为0
+                                    9月份9月19日流量数据保留，其他流量数据为0  */
+                            DateTime d17080307 = new DateTime(2017, 8, 3, 7, 0, 0);
+                            DateTime d17080314 = new DateTime(2017, 8, 3, 14, 0, 0);
+                            DateTime d17091907 = new DateTime(2017, 8, 9, 19, 0, 0);
+                            DateTime d17091907e = d17091907.AddDays(1);
+                            if ((temp > d17080307 && temp < d17080314) || (temp > d17091907 && temp < d17091907e))
+                            {
+                                nv = (r.NextDouble() * (h - l) + l).ToString("F2");
+                            }
+                            else
+                            {
+                                nv = "0";
+                            }
+                        }
+                        else if (fullName.Contains("丽江路北侧新区中学") || fullName.Contains("市民中心") || fullName.Contains("科文中心"))
+                        {
+                            nv = "0";
+                        }
+                        else if (fullName.Contains("胜利路与金辉街"))
+                        {
+
+                        }
+
+                        else
+                        {
+                            nv = "0";
+                        }
+                    }
 
 
-					else
-					{
-						nv = "0";
-					}
+					
 					sb.AppendLine(temp + "," + nv);
 
 				}
