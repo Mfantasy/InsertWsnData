@@ -21,6 +21,8 @@ namespace Wsndata数据交互
 
         private void Form1_Load(object sender, EventArgs e)
         {
+			//ProcessCsv.ImportWeatherStationData(2018);
+			return;
             new ProcessCsv().Work();
             Console.WriteLine(null + "123");
             DateTime dt = new DateTime(2015, 1, 1);
