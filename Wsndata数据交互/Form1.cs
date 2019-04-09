@@ -21,28 +21,29 @@ namespace Wsndata数据交互
 
         private void Form1_Load(object sender, EventArgs e)
         {
-			//ProcessCsv.ImportWeatherStationData(2018);
-			return;
-            new ProcessCsv().Work();
-            Console.WriteLine(null + "123");
-            DateTime dt = new DateTime(2015, 1, 1);
-            string k15 = ConvertDateTimeInt(dt).ToString();
-            string k16 = ConvertDateTimeInt(dt.AddYears(1)).ToString();
-            string k17 = ConvertDateTimeInt(dt.AddYears(2)).ToString();
-            string k18 = ConvertDateTimeInt(dt.AddYears(3)).ToString();
-            string k19 = ConvertDateTimeInt(dt.AddYears(4)).ToString();
-            Console.WriteLine(k15);
-            Console.WriteLine(k16);
-            Console.WriteLine(k17);
-            Console.WriteLine(k18);
-            Console.WriteLine(k19);
-            DataColumn col = new DataColumn("123");
-            col.Caption = "AV";
-            DataTable dtt = new DataTable();
-            dtt.Columns.Add(col);
-            DataRow r = dtt.NewRow(); r["123"] = "as";
-            dtt.Rows.Add(r);
-            dataGridView1.DataSource = dtt;
+			//var p = new ProcessCsv();
+			//p.ImportWeatherStationData(2018);
+			//p.Work();
+			//return;
+   //         Console.WriteLine(null + "123");
+   //         DateTime dt = new DateTime(2015, 1, 1);
+   //         string k15 = ConvertDateTimeInt(dt).ToString();
+   //         string k16 = ConvertDateTimeInt(dt.AddYears(1)).ToString();
+   //         string k17 = ConvertDateTimeInt(dt.AddYears(2)).ToString();
+   //         string k18 = ConvertDateTimeInt(dt.AddYears(3)).ToString();
+   //         string k19 = ConvertDateTimeInt(dt.AddYears(4)).ToString();
+   //         Console.WriteLine(k15);
+   //         Console.WriteLine(k16);
+   //         Console.WriteLine(k17);
+   //         Console.WriteLine(k18);
+   //         Console.WriteLine(k19);
+   //         DataColumn col = new DataColumn("123");
+   //         col.Caption = "AV";
+   //         DataTable dtt = new DataTable();
+   //         dtt.Columns.Add(col);
+   //         DataRow r = dtt.NewRow(); r["123"] = "as";
+   //         dtt.Rows.Add(r);
+   //         dataGridView1.DataSource = dtt;
             
         }
         double ConvertDateTimeInt(System.DateTime time)
@@ -55,7 +56,7 @@ namespace Wsndata数据交互
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            ExportData(textBox1.Text);
+            ExportData("2019");
 
             MessageBox.Show("~搞定~");
             //ImportData();
@@ -164,9 +165,12 @@ namespace Wsndata数据交互
                     DataColumn coltime = new DataColumn("时间",typeof(DateTime));
                     dt.Columns.Add(coltime);
                     DateTime mtime = DateTime.MaxValue;
+					//剔除创建年份之前的设备
                     if (g.Count() > 0) mtime = g.ElementAt(0).Created;
                     if (mtime.Year > int.Parse(year)) continue;
-                    
+
+					mtime = new DateTime(2018, 12, 31); //生成表格的最初时间
+
                     foreach (var f in g)//f>设备的指标
                     {
                         if (dt.Columns.Contains(f.Title)) continue;
@@ -237,7 +241,7 @@ namespace Wsndata数据交互
             if (year == "2018")
                 etime = new DateTime(2018, 12, 31);
             else
-                etime = new DateTime(2019,2,27);
+                etime = new DateTime(2019,4,1);
             List<DateTime> times = new List<DateTime>();
             foreach (DataRow item in dt.Rows)
             {
@@ -256,7 +260,7 @@ namespace Wsndata数据交互
             while (mtime < etime)
             {
                 mtime = mtime.AddDays(1);
-                if (mtime.ToString("yyyyMMdd") == "20180101") continue;
+                if (mtime.ToString("yyyyMMdd") == "20190401") continue;
                 if (!times.Exists(t => t.ToString("yyyyMMdd") == mtime.ToString("yyyyMMdd")))
                 {                   
                     BuYiTian(dt, mtime.ToString("yyyyMMdd"));
@@ -294,10 +298,6 @@ namespace Wsndata数据交互
                     row[col] = "1";
                 }
                 #region 补沣西红光大道
-                //else if (col.ColumnName.Contains("流速(m/s)"))
-                //{
-                //    row[col] = (r.NextDouble() * (0.38 - 0.18) + 0.18).ToString("F2");
-                //}
                 else
                 {
                     switch (col.ColumnName)
@@ -421,7 +421,7 @@ namespace Wsndata数据交互
                 }
                 sb.AppendLine(line);
             }
-            File.AppendAllText(Path.Combine(directory, dt.TableName + ".csv"), sb.ToString());
+            File.WriteAllText(Path.Combine(directory, dt.TableName + ".csv"), sb.ToString(), Encoding.GetEncoding("gb2312"));
         }
 
     }
