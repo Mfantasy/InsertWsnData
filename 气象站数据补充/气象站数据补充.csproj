@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="MySql.Data">
       <Private>True</Private>
-      <HintPath>..\..\..\..\Desktop\新建文件夹\MySql.Data.dll</HintPath>
+      <HintPath>..\InsertWsnData\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

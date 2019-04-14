@@ -217,7 +217,7 @@ namespace Wsndata数据交互
 			return times.Exists(t => t.AddMinutes(-30) < temp && t.AddMinutes(30) > temp);
 		}
 
-		Dictionary<DateTime, string> rains2017 = new Dictionary<DateTime, string>();
+		Dictionary<DateTime, string>  rains2017 = new Dictionary<DateTime, string>();
 		Dictionary<DateTime, string> rains2018 = new Dictionary<DateTime, string>();
 
 		/// <summary>
@@ -280,7 +280,7 @@ namespace Wsndata数据交互
 			int eyear = syear + 1;
 
 			DateTime ds = new DateTime(syear, 1, 1);
-			DateTime de = new DateTime(eyear - 1, 4, 1);
+			DateTime de = new DateTime(eyear, 1, 1);
 			DateTime dtemp = ds;
 
 			StringBuilder txt = new StringBuilder();
